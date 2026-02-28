@@ -3,13 +3,13 @@ from dotenv import load_dotenv
 from langchain_qdrant import QdrantVectorStore
 from openai import OpenAI
 
-
+import os
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 load_dotenv()
-client=OpenAI(api_key="AIzaSyDTFkwWWtnaNG1MT_zBa3Gc0bK-ARAR8os",
+client=OpenAI(api_key=os.getenv("GEMINI_API_KEY"),
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/")
 # embedding_model=OpenAIEmbeddings(model="text-embedding-3-large")
-# embeddings_google = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
+
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
 
 def retrieval(userquery):
